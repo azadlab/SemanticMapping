@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="velodyne_pointcloud" type="cloud_node" name="convert_veloscans">
+	<param name="calibration" value="$(find semantic_mapping)/launch/velo32.yaml" />
+    </node>
+    <node pkg="semantic_mapping" type="semMapper" name="sem_fuser" output="screen">
+	<param name="points_topic" value="/velodyne_points" />
+	
+	<param name="sensor_pose_x" value="0.96" />
+	<param name="sensor_pose_y" value="0.34" />
+	<param name="sensor_pose_z" value="2.0" />
+	<param name="sensor_pose_t" value="-1.6" />
+	
+	<param name="useKinect" value="true" />
+	<param name="visualize" value="true" />
+	<param name="models_path" value="/home/sg/libs/object_detector/" />
+<param name="save_path" value="/home/sg/rsiws/src/semantic_mapping/maps/" />
+    </node>
+
+<node pkg="rosbag" type="play" name="player" output="screen" args="--clock /media/sg/work/SemanticRobots/oru/data/coop/sekt2_2013-05-27-21-44-58_64.bag"/>
+
+</launch>

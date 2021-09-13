@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="velodyne_pointcloud" type="cloud_node" name="convert_veloscans">
+	<param name="calibration" value="$(find ndt_semantic)/launch/velo32.yaml" />
+    </node>
+    <node pkg="semantic_mapping" type="semMapper" name="sem_fuser" output="screen">
+	<param name="points_topic" value="/velodyne_points" />
+	
+	<param name="sensor_pose_x" value="1.18" />
+	<param name="sensor_pose_y" value="-0.3" />
+	<param name="sensor_pose_z" value="2.0" />
+	<param name="sensor_pose_t" value="-1.6" />
+	
+	<param name="useKinect" value="true" />
+	<param name="visualize" value="true" />
+    </node>
+
+
+
+<group ns="camera">
+    <arg name="manager" value="camera_nodelet_manager" />
+    <include file="$(find rgbd_launch)/launch/includes/manager.launch.xml">
+      <arg name="name"                value="$(arg manager)" />
+      <arg name="num_worker_threads"  value="4" />
+    </include>
+
+    <include file="$(find rgbd_launch)/launch/includes/processing.launch.xml">
+      <arg name="manager"                         value="$(arg manager)" />
+      <arg name="rgb"                             value="rgb" />
+      <arg name="ir"                              value="ir" />
+      <arg name="depth"                           value="depth" />
+      <arg name="depth_registered"                value="depth_registered" />
+      <arg name="projector"                       value="projector" />
+      <arg name="respawn"                         value="false" />
+      <arg name="rgb_processing"                  value="true" />
+      <arg name="ir_processing"                   value="false" />
+      <arg name="depth_processing"                value="false" />
+      <arg name="depth_registered_processing"     value="true" />
+      <arg name="disparity_processing"            value="false" />
+      <arg name="disparity_registered_processing" value="false" />
+      <arg name="hw_registered_processing"        value="true" />
+      <arg name="sw_registered_processing"        value="false" />
+    </include>
+
+  </group>
+  
+  <include file="$(find rgbd_launch)/launch/kinect_frames.launch">
+    <arg name="camera" value="camera" />
+    <arg name="tf_prefix" value="" />
+  </include>
+
+
+</launch>

@@ -1,0 +1,39 @@
+<package>
+  <name>semantic_mapping</name>
+  <version>1.0.28</version>
+  <description>semantic_mapping</description>
+  <maintainer email="rafid.siddiqui@oru.se">Rafid Siddiqui</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/</url>
+  <!-- <url type="bugtracker"></url> -->
+
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>laser_geometry</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_srvs</build_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <build_depend>pcl_conversions</build_depend>
+  <build_depend>eigen_conversions</build_depend>
+  <build_depend>octomap_ros</build_depend>
+  <build_depend>pcl_ros</build_depend>
+  <build_depend>libpcl-all-dev</build_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>laser_geometry</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_srvs</run_depend>
+  <run_depend>visualization_msgs</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>pcl_conversions</run_depend>
+  <run_depend>eigen_conversions</run_depend>
+  <run_depend>octomap_msgs</run_depend>
+  <run_depend>pcl_ros</run_depend>
+  <run_depend>libpcl-all-dev</run_depend>
+</package>

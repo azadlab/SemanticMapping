@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="velodyne_pointcloud" type="cloud_node" name="convert_veloscans">
+	<param name="calibration" value="$(find semantic_mapping)/launch/velo32.yaml" />
+    </node>
+    <node pkg="semantic_mapping" type="semMapper" name="sem_mapper" output="screen">
+	<param name="points_topic" value="/velodyne_points" />
+	
+	<param name="sensor_pose_x" value="0.96" />
+	<param name="sensor_pose_y" value="0.34" />
+	<param name="sensor_pose_z" value="2.0" />
+	<param name="sensor_pose_t" value="-1.6" />
+	
+	<param name="useKinect" value="true" />
+	<param name="visualize" value="true" />
+	<param name="models_path" value="/home/sg/libs/object_detector/" />
+	<param name="save_path" value="/home/sg/rsiws/src/semantic_mapping/maps/" />
+    </node>
+
+<arg name="path" default="/media/sg/work/SemanticRobots/oru/data/coop/kinect2/" />
+<arg name="bag1" default="sekt2_2013-05-27-20-41-58_1.bag" />
+<arg name="bag2" default="sekt2_2013-05-27-20-42-58_2.bag" />
+<arg name="bag3" default="sekt2_2013-05-27-20-43-58_3.bag" />
+<arg name="bag4" default="sekt2_2013-05-27-20-44-58_4.bag" />
+<arg name="bag5" default="sekt2_2013-05-27-20-45-58_5.bag" />
+
+<arg name="bag6" default="sekt2_2013-05-27-20-46-58_6.bag" />
+<arg name="bag7" default="sekt2_2013-05-27-20-47-58_7.bag" />
+<arg name="bag8" default="sekt2_2013-05-27-20-48-58_8.bag" />
+<arg name="bag9" default="sekt2_2013-05-27-20-49-58_9.bag" />
+<arg name="bag10" default="sekt2_2013-05-27-20-50-58_10.bag" />
+
+<node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(arg path)$(arg bag1) $(arg path)$(arg bag2) 
+$(arg path)$(arg bag3) $(arg path)$(arg bag4) $(arg path)$(arg bag5) $(arg path)$(arg bag6) $(arg path)$(arg bag7)
+$(arg path)$(arg bag8) $(arg path)$(arg bag9) $(arg path)$(arg bag10)"/>
+
+
+</launch>
